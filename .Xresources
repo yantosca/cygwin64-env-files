@@ -1,0 +1,12 @@
+XTerm*Background:      DarkSlateGray
+XTerm*Foreground:      LemonChiffon
+XTerm*CursorColor:     FireBrick
+XTerm*TermType:        XTerm
+XTerm*Geometry:        90x26+0+0
+XTerm*Font:           10x20
+XTerm*SaveLines:       500
+XTerm*ScrollBar:       true
+XTerm*TitleBar:        true
+XTerm*TextUnderIcon:   true
+XTerm*AllowIconInput:  true
+XTerm*AutoRaise:       true
