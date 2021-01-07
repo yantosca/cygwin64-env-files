@@ -94,7 +94,6 @@ alias gpo="git pull origin"
 alias gl="git log"
 alias glo="git log --oneline"
 alias glp="git log --pretty=format:'%h : %s' --topo-order --graph"
-alias getenv="cd ~/env; git pull origin master"
 alias update_tags="git tag -l | xargs git tag -d && git fetch -t"
 #alias xterm="xterm -bg DarkSlateGrey -leftbar"
 
