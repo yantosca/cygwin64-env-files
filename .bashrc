@@ -84,9 +84,6 @@ fi
 # Define some important local aliases
 #==============================================================================
 
-# Set prompt (optional)
-PS1="\[\e[1;93m\][$USER \W]$\[\e[0m\] "
-
 # Change to home directory
 cd ~
 
