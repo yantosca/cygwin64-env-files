@@ -25,7 +25,7 @@
 #BOC
 
 #==============================================================================
-# %%%%% Personal settings: Look-and-feel customizations %%%%%
+# %%%%% Personal settings: Look-and-feel %%%%%
 #==============================================================================
 
 # Override the system prompt (93 = yellow)
@@ -41,17 +41,16 @@ export LS_COLORS='no=00:fi=00:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 
 # General Unix commands
 alias disk="du -h -s -c"
+alias emacs="emacs 2>/dev/null"
 alias g="grep -in --color=auto"
 alias gt="grep -in --text"
-alias gf="gifview -a"
-alias m="less"
-alias me="xterm &"
+alias m="less -CR"
+alias me="xterm 2>/dev/null &"
 alias proc="ps -ef | grep $USER | sort"
 alias pu="rm *~"
 alias pua="rm .*~"
 alias sb=". ~/.bashrc"
 alias sba=". ~/.bash_aliases"
-
 alias tf="tail --follow"
 alias zap="kill -9"
 alias cd="cd -P"
@@ -59,8 +58,10 @@ alias c="clear"
 alias h="history"
 alias diff="colordiff"
 alias rm="rm -Iv"
+alias rmcore="rm core.*"
 alias cp="cp -v"
 alias mv="mv -v"
+alias ssh="ssh -YA"
 
 # Directory listing commands
 alias ls="ls -CF --time-style=long-iso --color=auto"
@@ -72,54 +73,62 @@ alias la="ls -a"
 alias lla="ls -la"
 alias llh="ls -lh"
 
-# Convert a windows file to Unix
-function dos2unix() {
-  awk '{ sub("\r$", ""); print }' $1 > $2
-}
-
 # Tmux aliases
 alias tmuxnew="tmux new -s "
 alias tmuxat="tmux a -t "
 alias tmuxde="tmux detach "
+
+function dos2unix() {
+    ##### Convert a windows file to Unix #####
+    awk '{ sub("\r$", ""); print }' $1 > $2
+}
 
 #==============================================================================
 # %%%%% Personal settings: Git commands %%%%%
 #==============================================================================
 
 # Basic Git commands
-alias gui="git gui &"
-alias gk="gitk &"
-alias gka="gitk --all &"
+alias gui="git gui 2>/dev/null &"
+alias gk="gitk 2>/dev/null &"
+alias gka="gitk --all 2>/dev/null &"
 alias gpo="git pull origin"
 alias gl="git log"
 alias glo="git log --oneline"
 alias glp="git log --pretty=format:'%h : %s' --topo-order --graph"
 alias update_tags="git tag -l | xargs git tag -d && git fetch -t"
-#alias xterm="xterm -bg DarkSlateGrey -leftbar"
 
-# Remove a remote branch
+function gbup() {
+    ###### Set a branch to follow a remote branch #####
+    git branch --set-upstream-to=origin/${1} ${1}
+}
+
 function gbrd() {
-  git branch -r -d origin/$1
+    ###### Remove remote branches #####
+    git branch -r -d origin/$1
 }
 
-# Remove local and remote branches
 function gprune() {
-  git branch -d $1
-  gbrd $1
+    ##### Remove local and remote branches #####
+    git branch -d $1
+    gbrd $1
 }
 
 #==============================================================================
-# %%%%% Misc stuff %%%%%
+# %%%%% Personal settings: Harvard logins %%%%%
 #==============================================================================
 
-# Misc aliases
-alias rmcore="rm core.*"
+# Log into AS
+alias bmygo="ssh bmy@bmy.as.harvard.edu"
 
-function dos2unix() {
-    ##### Convert a windows file to Unix #####
-    awk '{ sub("\r$", ""); print }' ${1} > temp.txt
-    mv temp.txt $1 > /dev/null
+# Log into FASRC (login node assigned at ranndom)
+alias rcgo="ssh ryantosca@login.rc.fas.harvard.edu"
+
+function hgo() {
+    ##### Log into a holylogin node #####
+    node=$(printf %02d $1)
+    ssh ryantosca@holylogin${node}.rc.fas.harvard.edu
 }
+
 #==============================================================================
 # %%%%% Personal settings: AWS cloud %%%%%
 #==============================================================================
@@ -127,6 +136,11 @@ function dos2unix() {
 # Amazon S3 commands
 alias s3copy="aws s3 cp -request-payer=requester "
 alias s3ls="aws s3 ls -request-payer=requester "
+
+function awsgo() {
+    ##### Log into an AWS instance #####
+    ssh ubuntu@${1}
+}
 
 #==============================================================================
 # %%%%% Personal settings: Emacs %%%%%
@@ -136,12 +150,27 @@ alias s3ls="aws s3 ls -request-payer=requester "
 # This is only needed for Cygwin64 on Windows 10
 alias emacs="emacs -q --eval '(setq alt-conf t)' --load ~/.emacs"
 
-#==============================================================================
-# %%%%% Personal settings: Logins %%%%%
-#==============================================================================
+# Note, we usually don't install a Python stack on cygwin
+# but you can uncomment these if so desired.
+##==============================================================================
+## %%%%% Python settings %%%%%
+##==============================================================================
+#
+## Select Bob Y's custom environment (matplotlib 3)
+#alias sab="conda activate bmy"
+#alias sdb="conda deactivate"
+#
+## Add Python repos to $PYTHONPATH
+#export PYTHONPATH=${PYTHONPATH}:${HOME}/python/gcpy
+#
+## Ignore warnings about deprecated options
+#export PYTHONWARNINGS=ignore::DeprecationWarning
+#
+## Settings for Python packages
+#export PYLINTRC=~/.pylint.rc
+#
+## Temporary Python folder (avoids warning messages)
+#export XDG_RUNTIME_DIR=/tmp/runtime-${USER}
 
-# Login to different machines
-alias odygo="ssh ryantosca@login.rc.fas.harvard.edu"
-alias bmygo="ssh bmy@bmy.as.harvard.edu"
 
 #EOC

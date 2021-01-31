@@ -344,7 +344,7 @@
 (global-set-key [(control =)] 'joc-bounce-sexp)
 
 ;;=============================================================================
-;; MODES 
+;; MODES
 ;;=============================================================================
 
 ;; activate image mode to display images in emacs buffer (jpg, gif, tiff, ...)
@@ -591,13 +591,13 @@
     (setq font-lock-auto-fontify t))   ; XEmacs
 
 ;;=============================================================================
+;; SAVE DESKTOP OPTIONS
 ;; To save desktop, i.e., re-open the same files as when exiting.
 ;; Load the desktop library to do so.  For this to work, you must type
 ;; M-x desktop-save during the session.  This also needs to be done *after*
 ;; all modes are loaded -like here-, if you want the "colorization" of code
 ;; to work.
 ;;=============================================================================
-
 (load "desktop")
 (desktop-load-default)
 (desktop-read)
@@ -615,6 +615,13 @@
 (set-frame-height (selected-frame) 49)    ; 48 lines
 (set-frame-width  (selected-frame) 164)   ; 163 columns
 (split-window-horizontally)               ; Use two vertical windows
+;; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+;; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+;; %%%%% Bob Y's Linux Laptop preferences
+;; %%%%% Open 1 window
+;;(set-frame-height (selected-frame) 34)      ; 34 lines
+;;(set-frame-width  (selected-frame) 81)      ; 80 columns
 ;; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ;; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
