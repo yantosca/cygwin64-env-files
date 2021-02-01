@@ -25,6 +25,17 @@
 #BOC
 
 #==============================================================================
+# %%%%% Personal settings: Specific to Cygwin64 %%%%%
+#==============================================================================
+
+# Alias xterm to mintty
+alias xterm=mintty
+
+# Force emacs to start by loading the .emacs file
+# This is only needed for Cygwin64 on Windows 10
+alias emacs="emacs -q --eval '(setq alt-conf t)' --load ~/.emacs"
+
+#==============================================================================
 # %%%%% Personal settings: Look-and-feel %%%%%
 #==============================================================================
 
@@ -61,7 +72,8 @@ alias rm="rm -Iv"
 alias rmcore="rm core.*"
 alias cp="cp -v"
 alias mv="mv -v"
-alias ssh="ssh -YA"
+alias ssh="ssh -YA"                         # Trusted X11 + agent forwarding
+alias ssh_pf="ssh -L 8999:localhost:8999 "  # Port forwarding
 
 # Directory listing commands
 alias ls="ls -CF --time-style=long-iso --color=auto"
@@ -143,17 +155,16 @@ function awsgo() {
 }
 
 #==============================================================================
-# %%%%% Personal settings: Emacs %%%%%
+# %%%%% Compilers %%%%%
 #==============================================================================
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export FC=/usr/bin/gfortran
 
-# Force emacs to start by loading the .emacs file
-# This is only needed for Cygwin64 on Windows 10
-alias emacs="emacs -q --eval '(setq alt-conf t)' --load ~/.emacs"
-
-# Note, we usually don't install a Python stack on cygwin
-# but you can uncomment these if so desired.
 ##==============================================================================
-## %%%%% Python settings %%%%%
+## ## %%%%% Personal Settigns: Python %%%%%
+## Note, we usually don't install a Python stack on cygwin
+## but you can uncomment these if so desired.
 ##==============================================================================
 #
 ## Select Bob Y's custom environment (matplotlib 3)
@@ -171,6 +182,5 @@ alias emacs="emacs -q --eval '(setq alt-conf t)' --load ~/.emacs"
 #
 ## Temporary Python folder (avoids warning messages)
 #export XDG_RUNTIME_DIR=/tmp/runtime-${USER}
-
-
+#
 #EOC
