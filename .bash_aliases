@@ -125,6 +125,26 @@ function gprune() {
     gbrd $1
 }
 
+function ghgc() {
+    ##### Clone a repo from github.com/geoschem #####
+    git clone git@github.com:geoschem/${1}.git
+}
+function ghy() {
+    ##### Clone a repo from github.com/yantosca #####
+    git clone git@github.com:yantosca/${1}.git
+}
+
+# Git aliases for GEOS-Chem
+#source /etc/bash_completion.d/git
+alias clone_gcc="git clone git@github.com:geoschem/GCClassic.git"
+alias clone_gchp="git clone git@github.com:geoschem/gchp.git"
+alias clone_hco="git clone git@github.com:geoschem:hemco.git"
+alias gitc="git -C CodeDir"
+alias glog="git -C src/GEOS-Chem log --oneline"
+alias gsu="git submodule update --init --recursive"
+alias hlog="git -C src/HEMCO log --oneline"
+alias hplog="git -C src/GCHP_GridComp/HEMCO_GridComp/HEMCO log --oneline"
+
 #==============================================================================
 # %%%%% Personal settings: Harvard logins %%%%%
 #==============================================================================
