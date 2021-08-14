@@ -52,7 +52,6 @@ export LS_COLORS='no=00:fi=00:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 
 # General Unix commands
 alias disk="du -h -s -c"
-alias emacs="emacs 2>/dev/null"
 alias g="grep -in --color=auto"
 alias gt="grep -in --text"
 alias m="less -CR"
